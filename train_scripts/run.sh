@@ -11,7 +11,7 @@ set -x
 
 case="CCCCCC"
 
-output_directory="/home/linjiong/scratch/ACE2-ERA5_data/output_directory/${case}"
+output_directory="/home/linjiong/scratch/datasets/output_directory/${case}"
 mkdir -p "${output_directory}"
 
 # Create config

@@ -1,4 +1,4 @@
-experiment_dir: /home/linjiong/scratch/ACE2-ERA5_data/output_directory/2024010100_r0001
+experiment_dir: /home/linjiong/scratch/datasets/output_directory/r0001
 save_checkpoint: true
 checkpoint_save_epochs:
   step: 25
@@ -11,7 +11,7 @@ train_loader:
   batch_size: 2
   num_data_workers: 1
   dataset:
-    - data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+    - data_path: /home/linjiong/scratch/datasets/training
       subset:
         start_time: '2024-01-01'
         stop_time: '2024-12-31'
@@ -19,7 +19,7 @@ validation_loader:
   batch_size: 2
   num_data_workers: 1
   dataset:
-    - data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+    - data_path: /home/linjiong/scratch/datasets/training
       subset:
         start_time: '2025-01-01'
         stop_time: '2025-04-30'
@@ -34,11 +34,11 @@ inference:
         - '2025-03-01T00:00:00'
         - '2025-04-01T00:00:00'
     dataset:
-      data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+      data_path: /home/linjiong/scratch/datasets/training
     num_data_workers: 1
   aggregator:
     log_histograms: true
-    time_mean_reference_data: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/time_means_2024.nc
+    time_mean_reference_data: /home/linjiong/scratch/datasets/statsdata/time_means_2024.nc
 logging:
   log_to_screen: true
   log_to_wandb: false
@@ -78,11 +78,11 @@ stepper:
       specific_total_water_2: 0.5
       Q2m: 0.5
   normalization:
-    global_means_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/centering_2024.nc
-    global_stds_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/scaling_full_field_2024.nc
+    global_means_path: /home/linjiong/scratch/datasets/statsdata/centering_2024.nc
+    global_stds_path: /home/linjiong/scratch/datasets/statsdata/scaling_full_field_2024.nc
   residual_normalization:
-    global_means_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/centering_2024.nc
-    global_stds_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/scaling_residual_2024.nc
+    global_means_path: /home/linjiong/scratch/datasets/statsdata/centering_2024.nc
+    global_stds_path: /home/linjiong/scratch/datasets/statsdata/scaling_residual_2024.nc
   ocean:
     surface_temperature_name: surface_temperature
     ocean_fraction_name: ocean_fraction
