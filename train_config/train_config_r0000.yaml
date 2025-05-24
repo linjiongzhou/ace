@@ -1,0 +1,183 @@
+experiment_dir: /home/linjiong/scratch/ACE2-ERA5_data/output_directory
+save_checkpoint: true
+checkpoint_save_epochs:
+  step: 25
+validate_using_ema: true
+ema:
+  decay: 0.999
+max_epochs: 120
+n_forward_steps: 2
+train_loader:
+  batch_size: 3
+  num_data_workers: 1
+  dataset:
+    - data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+      subset:
+        start_time: '2024-01-01'
+        stop_time: '2024-12-31'
+validation_loader:
+  batch_size: 3
+  num_data_workers: 1
+  dataset:
+    - data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+      subset:
+        start_time: '2025-01-01'
+        stop_time: '2025-04-30'
+inference:
+  n_forward_steps: 479
+  forward_steps_in_memory: 10
+  loader:
+    start_indices:
+      times:
+        - '2025-01-01T00:00:00'
+    dataset:
+      data_path: /home/linjiong/scratch/ACE2-ERA5_data/training
+    num_data_workers: 1
+  aggregator:
+    log_histograms: true
+    time_mean_reference_data: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/time_means_2024.nc
+logging:
+  log_to_screen: true
+  log_to_wandb: false
+  log_to_file: true
+  project: ace
+optimization:
+  enable_automatic_mixed_precision: false
+  lr: 0.0001
+  optimizer_type: FusedAdam
+  kwargs:
+    weight_decay: 0.01
+stepper:
+  builder:
+    type: SphericalFourierNeuralOperatorNet
+    config:
+      embed_dim: 256
+      filter_type: linear
+      hard_thresholding_fraction: 1.0
+      use_mlp: true
+      normalization_layer: instance_norm
+      num_layers: 8
+      operator_type: dhconv
+      scale_factor: 1
+      separable: false
+      spectral_layers: 3
+      spectral_transform: sht
+      pos_embed: true
+  loss:
+    type: MSE
+    weights:
+      air_temperature_0: 0.5
+      air_temperature_1: 0.5
+      eastward_wind_0: 0.5
+      northward_wind_0: 0.5
+      specific_total_water_0: 0.5
+      specific_total_water_1: 0.25
+      specific_total_water_2: 0.5
+      Q2m: 0.5
+  normalization:
+    global_means_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/centering_2024.nc
+    global_stds_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/scaling_full_field_2024.nc
+  residual_normalization:
+    global_means_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/centering_2024.nc
+    global_stds_path: /home/linjiong/scratch/ACE2-ERA5_data/statsdata/scaling_residual_2024.nc
+  ocean:
+    surface_temperature_name: surface_temperature
+    ocean_fraction_name: ocean_fraction
+  corrector:
+    conserve_dry_air: true
+    force_positive_names:
+    - specific_total_water_0
+    - specific_total_water_1
+    - specific_total_water_2
+    - specific_total_water_3
+    - specific_total_water_4
+    - specific_total_water_5
+    - specific_total_water_6
+    - specific_total_water_7
+    - Q2m
+  next_step_forcing_names:
+  - DSWRFtoa
+  in_names:
+  - land_fraction
+  - ocean_fraction
+  - sea_ice_fraction
+  - DSWRFtoa
+  - HGTsfc
+  - global_mean_co2
+  - PRESsfc
+  - surface_temperature
+  - TMP2m
+  - Q2m
+  - UGRD10m
+  - VGRD10m
+  - air_temperature_0
+  - air_temperature_1
+  - air_temperature_2
+  - air_temperature_3
+  - air_temperature_4
+  - air_temperature_5
+  - air_temperature_6
+  - air_temperature_7
+  - specific_total_water_0
+  - specific_total_water_1
+  - specific_total_water_2
+  - specific_total_water_3
+  - specific_total_water_4
+  - specific_total_water_5
+  - specific_total_water_6
+  - specific_total_water_7
+  - eastward_wind_0
+  - eastward_wind_1
+  - eastward_wind_2
+  - eastward_wind_3
+  - eastward_wind_4
+  - eastward_wind_5
+  - eastward_wind_6
+  - eastward_wind_7
+  - northward_wind_0
+  - northward_wind_1
+  - northward_wind_2
+  - northward_wind_3
+  - northward_wind_4
+  - northward_wind_5
+  - northward_wind_6
+  - northward_wind_7
+  out_names:
+  - PRESsfc
+  - surface_temperature
+  - air_temperature_0
+  - air_temperature_1
+  - air_temperature_2
+  - air_temperature_3
+  - air_temperature_4
+  - air_temperature_5
+  - air_temperature_6
+  - air_temperature_7
+  - specific_total_water_0
+  - specific_total_water_1
+  - specific_total_water_2
+  - specific_total_water_3
+  - specific_total_water_4
+  - specific_total_water_5
+  - specific_total_water_6
+  - specific_total_water_7
+  - eastward_wind_0
+  - eastward_wind_1
+  - eastward_wind_2
+  - eastward_wind_3
+  - eastward_wind_4
+  - eastward_wind_5
+  - eastward_wind_6
+  - eastward_wind_7
+  - northward_wind_0
+  - northward_wind_1
+  - northward_wind_2
+  - northward_wind_3
+  - northward_wind_4
+  - northward_wind_5
+  - northward_wind_6
+  - northward_wind_7
+  - TMP2m
+  - Q2m
+  - UGRD10m
+  - VGRD10m

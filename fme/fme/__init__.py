@@ -1,9 +1,10 @@
 __version__ = "2024.12.0"
 
+import torch
 import torch_harmonics
 
 from . import ace
-from .core import Packer, StandardNormalizer, get_device, get_normalizer, using_gpu
+from .core import Packer, StandardNormalizer, get_normalizer, using_gpu
 from .core.metrics import (
     gradient_magnitude,
     gradient_magnitude_percent_diff,
@@ -16,6 +17,14 @@ from .core.metrics import (
     weighted_mean_gradient_magnitude,
     weighted_std,
 )
+
+def get_device():
+    if torch.backends.mps.is_available():
+        return torch.device("mps")
+    elif torch.cuda.is_available():
+        return torch.device("cuda")
+    else:
+        return torch.device("cpu")
 
 APPLY_SHT_FIX = True
 
@@ -32,6 +41,7 @@ __all__ = [
     "rmse_of_time_mean",
     "time_and_global_mean_bias",
     "gradient_magnitude_percent_diff",
+    "get_device",
     "get_device",
     "get_normalizer",
     "Packer",
