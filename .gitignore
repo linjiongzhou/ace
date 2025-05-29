@@ -139,3 +139,11 @@ scratch/
 
 # Some in progress data pipelines get added here
 scripts/data_process/.nfs*
+
+# sample runscript
+inference_scripts/run_*.sh
+train_scripts/run_*.sh
+
+# sample configuration files
+inference_config/inference_config_*.yaml
+train_config/train_config_*.yaml

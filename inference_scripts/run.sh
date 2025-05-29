@@ -17,7 +17,8 @@ dd="${date:6:2}"
 hh="${date:8:2}"
 
 output_directory="/home/linjiong/scratch/datasets/output_directory/${case}_${date}"
-ckpt_file="/home/linjiong/scratch/datasets/output_directory/${case}/training_checkpoints/best_inference_ckpt.tar"
+#ckpt_file="/home/linjiong/scratch/datasets/ace2_era5_ckpt.tar"
+ckpt_file="/home/linjiong/scratch/datasets/output_directory/${case}/training_checkpoints/best_ckpt.tar"
 
 mkdir -p "${output_directory}"
 

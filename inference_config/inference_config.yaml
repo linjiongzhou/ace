@@ -8,15 +8,17 @@ logging:
   log_to_file: true
   project: ace
 initial_condition:
-  path: /home/linjiong/scratch/datasets/initial_conditions/gfs_analysis/ic_YYYY.nc
+  #path: /home/linjiong/scratch/datasets/initial_conditions/gfs_analysis/ic_YYYY.nc
+  path: /home/linjiong/scratch/datasets/initial_conditions/ic_YYYY.nc
   start_indices:
     times:
       - "YYYY-MM-DDTHH:00:00"
 forcing_loader:
   dataset:
-    data_path: /home/linjiong/scratch/datasets/forcing_data/gfs_analysis/
+    #data_path: /home/linjiong/scratch/datasets/forcing_data/gfs_analysis/
+    data_path: /home/linjiong/scratch/datasets/forcing_data/
   num_data_workers: 4
 data_writer:
   save_prediction_files: true
   save_monthly_files: false
-  names: ["h500", "TMP850", "TMP2m", "UGRD10m", "VGRD10m", "PRATEsfc"]
+  names: ["h200", "h500", "h850", "UGRD200", "UGRD500", "UGRD850", "VGRD200", "VGRD500", "VGRD850", "Q200", "Q500", "Q850", "TMP200", "TMP500", "TMP850", "Q2m", "TMP2m", "UGRD10m", "VGRD10m", "PRATEsfc"]
