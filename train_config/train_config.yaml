@@ -11,15 +11,19 @@ train_loader:
   batch_size: 2
   num_data_workers: 1
   dataset:
-    - data_path: /home/linjiong/scratch/datasets/training
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/part1
       subset:
-        start_time: '2024-01-01'
+        start_time: '2021-03-21'
+        stop_time: '2022-06-23'
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/part2
+      subset:
+        start_time: '2022-06-25'
         stop_time: '2024-12-31'
 validation_loader:
   batch_size: 2
   num_data_workers: 1
   dataset:
-    - data_path: /home/linjiong/scratch/datasets/training
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/part2
       subset:
         start_time: '2025-01-01'
         stop_time: '2025-04-30'
@@ -34,16 +38,17 @@ inference:
         - '2025-03-01T00:00:00'
         - '2025-04-01T00:00:00'
     dataset:
-      data_path: /home/linjiong/scratch/datasets/training
+      data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/part2
     num_data_workers: 1
   aggregator:
     log_histograms: true
-    time_mean_reference_data: /home/linjiong/scratch/datasets/statsdata/time_means_2024.nc
+    time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/time_means_2024.nc
 logging:
   log_to_screen: true
-  log_to_wandb: false
+  log_to_wandb: true
   log_to_file: true
-  project: ace
+  project: AI-SHiELD
+  entity: linjiong-princeton-university
 optimization:
   enable_automatic_mixed_precision: false
   lr: 0.0001
@@ -80,11 +85,11 @@ stepper:
       TMP850: 5
       Q2m: 0.5
   normalization:
-    global_means_path: /home/linjiong/scratch/datasets/statsdata/centering_2024.nc
-    global_stds_path: /home/linjiong/scratch/datasets/statsdata/scaling_full_field_2024.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/centering_2024.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/scaling_full_field_2024.nc
   residual_normalization:
-    global_means_path: /home/linjiong/scratch/datasets/statsdata/centering_2024.nc
-    global_stds_path: /home/linjiong/scratch/datasets/statsdata/scaling_residual_2024.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/centering_2024.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/scaling_residual_2024.nc
   ocean:
     surface_temperature_name: surface_temperature
     ocean_fraction_name: ocean_fraction

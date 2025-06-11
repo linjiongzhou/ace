@@ -6,7 +6,11 @@
 #case="r0003" # Try 4 GPUs in two nodes
 #case="r0004" # same as r0001, add new training data (h500, TMP850, ...)
 #case="r0005" # same as r0004, fix extrapolation
-case="r0006" # same as r0005, fix solar incident
+#case="r0006" # same as r0005, fix  solar incident
+#case="r0007" # same as r0006, use wandb
+#case="r0008" # same as r0007, SBATCH --time=17:00:00
+#case="r0009" # same as r0008, training data 2023-2024
+case="r0010" # same as r0008, training data 2021-2024
 
 sed -e "s|CCCCCC|${case}|g" \
     train_scripts/run.sh > train_scripts/run_${case}.sh

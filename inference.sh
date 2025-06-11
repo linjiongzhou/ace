@@ -6,11 +6,15 @@
 #case="r0003" # Try 4 GPUs in two nodes
 #case="r0004" # same as r0001, add new training data (h500, TMP850, ...)
 #case="r0005" # same as r0004, fix extrapolation
-case="r0006" # same as r0005, fix solar incident
+#case="r0006" # same as r0005, fix  solar incident
+#case="r0007" # same as r0006, use wandb
+#case="r0008" # same as r0007, SBATCH --time=17:00:00
+#case="r0009" # same as r0008, training data 2023-2024
+case="r0010" # same as r0008, training data 2021-2024
 
 dates=(\
-		"2020010100" \
-		#"2024010100" \
+		#"2020010100" \
+		"2024010100" \
 		#"2024050100" \
 		#"2024050200" \
 		#"2024050300" \
@@ -42,7 +46,7 @@ dates=(\
 		#"2024052900" \
 		#"2024053000" \
 		#"2024053100" \
-		#"2025010100" \
+		"2025010100" \
 	  )
 
 for date in "${dates[@]}"; do
