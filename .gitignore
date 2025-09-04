@@ -141,9 +141,9 @@ scratch/
 scripts/data_process/.nfs*
 
 # sample runscript
-inference_scripts/run_*.sh
-train_scripts/run_*.sh
+inference_scripts/run_r*.sh
+train_scripts/run_r*.sh
 
 # sample configuration files
-inference_config/inference_config_*.yaml
-train_config/train_config_*.yaml
+inference_config/inference_config_r*.yaml
+train_config/train_config_r*.yaml
