@@ -186,7 +186,7 @@ inference:
     num_data_workers: 16
   aggregator:
     log_histograms: true
-    time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/time_means_all.nc
+    time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/time_means_all.XXXXXXxYYYYYY.nc
 logging:
   log_to_screen: true
   log_to_wandb: true
@@ -238,11 +238,11 @@ stepper:
       USWRFtoa: 2
       tendency_of_total_water_path_due_to_advection: 0.5
   normalization:
-    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.nc
-    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_full_field_all.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.XXXXXXxYYYYYY.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_full_field_all.XXXXXXxYYYYYY.nc
   residual_normalization:
-    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.nc
-    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_residual_all.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.XXXXXXxYYYYYY.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_residual_all.XXXXXXxYYYYYY.nc
   ocean:
     surface_temperature_name: surface_temperature
     ocean_fraction_name: ocean_fraction

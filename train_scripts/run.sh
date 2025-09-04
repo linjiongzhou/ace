@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train_ACE_CCCCCC
+#SBATCH --job-name=train_ACE_XXXXXX_YYYYYY_CCCCCC
 #SBATCH --partition=u1-h100
 #SBATCH --qos=gpuwf
 #SBATCH -A gfdlhires
@@ -14,6 +14,8 @@
 set -e
 set -x
 
+nlon="XXXXXX"
+nlat="YYYYYY"
 case="CCCCCC"
 data="DDDDDD"
 
@@ -24,7 +26,9 @@ mkdir -p "${output_directory}"
 
 if [ ! -f "train_config/train_config_${case}.yaml" ]; then
     # Create config
-    sed -e "s|OOOOOO|${output_directory}|g" \
+    sed -e "s|XXXXXX|${nlon}|g" \
+        -e "s|YYYYYY|${nlat}|g" \
+        -e "s|OOOOOO|${output_directory}|g" \
         train_config/train_config_${data}.yaml > train_config/train_config_${case}.yaml
 fi
 

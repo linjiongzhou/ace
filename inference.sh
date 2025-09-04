@@ -56,6 +56,11 @@ data="ifs"
 #ckpt="UFSReplay"
 ckpt="ERA5"
 
+nlon=360
+nlat=180
+#nlon=1440
+#nlat=720
+
 dates=(\
 		#"2020010100" "2020011100" "2020012100" \
 		#"2020020100" "2020021100" "2020022100" \
@@ -104,7 +109,9 @@ EXCLUDE_NODES="u21g10,u21g11,u21g12,u21g13,u21g14,u22g01,u22g02,u22g03,u22g08,u2
 
 for date in "${dates[@]}"; do
     echo ${case}, ${data}, ${ckpt}, ${date}
-    sed -e "s|CCCCCC|${case}|g" \
+    sed -e "s|XXXXXX|${nlon}|g" \
+        -e "s|YYYYYY|${nlat}|g" \
+        -e "s|CCCCCC|${case}|g" \
         -e "s|TTTTTT|${data}|g" \
         -e "s|PPPPPP|${ckpt}|g" \
         -e "s|DDDDDD|${date}|g" \

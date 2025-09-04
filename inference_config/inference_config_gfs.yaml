@@ -8,11 +8,11 @@ logging:
   log_to_file: true
   project: ace
 initial_condition:
-  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/gfs_analysis/part3/ic_YYYY.nc
-  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/ic_YYYY.nc
+  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/gfs_analysis/part3/ic_ZZZZ.XXXXXXxYYYYYY.nc
+  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/ic_ZZZZ.XXXXXXxYYYYYY.nc
   start_indices:
     times:
-      - "YYYY-MM-DDTHH:00:00"
+      - "ZZZZ-MM-DDTHH:00:00"
 forcing_loader:
   dataset:
     data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/gfs_analysis/part3/

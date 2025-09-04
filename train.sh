@@ -52,8 +52,15 @@ case="r0047" # same as r0044, but moisture_budget_correction off
 #data="gfs"
 data="ufs"
 
+nlon=360
+nlat=180
+#nlon=1440
+#nlat=720
+
 if [ ! -f "train_scripts/run_${case}.sh" ]; then
-    sed -e "s|CCCCCC|${case}|g" \
+    sed -e "s|XXXXXX|${nlon}|g" \
+        -e "s|YYYYYY|${nlat}|g" \
+        -e "s|CCCCCC|${case}|g" \
         -e "s|DDDDDD|${data}|g" \
         train_scripts/run.sh > train_scripts/run_${case}.sh
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=run_ACE_CCCCCC_TTTTTT_PPPPPP_DDDDDD
+#SBATCH --job-name=run_ACE_XXXXXX_YYYYYY_CCCCCC_TTTTTT_PPPPPP_DDDDDD
 #SBATCH --partition=u1-h100
 #SBATCH --qos=gpuwf
 #SBATCH -A gfdlhires
@@ -12,6 +12,8 @@
 set -e
 set -x
 
+nlon="XXXXXX"
+nlat="YYYYYY"
 case="CCCCCC"
 data="TTTTTT"
 ckpt="PPPPPP"
@@ -32,9 +34,11 @@ fi
 output_directory="/scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/output_directory/${case}_${data}_${ckpt}_${date}"
 mkdir -p "${output_directory}"
 
-sed -e "s|FFFFFF|${ckpt_file}|g" \
+sed -e "s|XXXXXX|${nlon}|g" \
+    -e "s|YYYYYY|${nlat}|g" \
+    -e "s|FFFFFF|${ckpt_file}|g" \
     -e "s|OOOOOO|${output_directory}|g" \
-    -e "s|YYYY|${yyyy}|g" \
+    -e "s|ZZZZ|${yyyy}|g" \
     -e "s|MM|${mm}|g" \
     -e "s|DD|${dd}|g" \
     -e "s|HH|${hh}|g" \
