@@ -47,7 +47,8 @@
 #case="r0044" # same as r0036, but fix the additional data
 #case="r0045" # same as r0042, but moisture_budget_correction off
 #case="r0046" # same as r0043, but moisture_budget_correction off
-case="r0047" # same as r0044, but moisture_budget_correction off
+#case="r0047" # same as r0044, but moisture_budget_correction off
+case="r0048" # same as r0047, but use new file naming
 
 #data="gfs"
 data="ufs"
@@ -57,6 +58,14 @@ nlat=180
 #nlon=1440
 #nlat=720
 
+# If the first argument is "clean", remove generated files and exit
+if [[ "$1" == "clean" ]]; then
+    echo "Cleaning up for case ${case}..."
+    rm -rf "train_scripts/run_${case}.sh" \
+           "train_config/train_config_${case}.yaml" \
+           "../datasets/output_directory/${case}"
+fi
+
 if [ ! -f "train_scripts/run_${case}.sh" ]; then
     sed -e "s|XXXXXX|${nlon}|g" \
         -e "s|YYYYYY|${nlat}|g" \
@@ -65,90 +74,18 @@ if [ ! -f "train_scripts/run_${case}.sh" ]; then
         train_scripts/run.sh > train_scripts/run_${case}.sh
 fi
 
-max_submissions=50
+max_submissions=10
 submit_count=0
 
-# Desired number of GPU nodes for this run:
-required_nodes=8
-group_list=(u23 u22 u21 u20)
-
-# Hardcoded list of nodes to avoid:
-# nodelist subtracts from "scontrol show reservation | grep u2.g"
-EXCLUDE_NODES="u21g10,u21g11,u21g12,u21g13,u21g14,u22g01,u22g02,u22g08"
-
-find_nodelist() {
-    sinfo_out=$(sinfo -p u1-h100,u1-mi300x,u1-gh -N -o "%N %T" | awk '$2=="idle" {print $1}')
-
-    declare -A node_groups
-    for prefix in "${group_list[@]}"; do
-        node_groups[$prefix]=""
-    done
-
-    for node in $sinfo_out; do
-        if echo "$EXCLUDE_NODES" | grep -qw "$node"; then
-            continue
-        fi
-        for prefix in "${group_list[@]}"; do
-            if [[ $node == ${prefix}g* ]]; then
-                node_groups[$prefix]="${node_groups[$prefix]} $node"
-            fi
-        done
-    done
-
-    check_combination() {
-        local nodes=()
-        for g in "$@"; do
-            nodes+=(${node_groups[$g]})
-        done
-        if [ ${#nodes[@]} -ge $required_nodes ]; then
-            echo "${nodes[@]:0:$required_nodes}"
-            return 0
-        fi
-        return 1
-    }
-
-    for g1 in "${group_list[@]}"; do
-        result=$(check_combination $g1) && echo "$result" && return 0
-    done
-
-    for i in "${!group_list[@]}"; do
-        for j in $(seq $((i+1)) $((${#group_list[@]}-1))); do
-            result=$(check_combination ${group_list[$i]} ${group_list[$j]}) && echo "$result" && return 0
-        done
-    done
-
-    for i in "${!group_list[@]}"; do
-        for j in $(seq $((i+1)) $((${#group_list[@]}-1))); do
-            for k in $(seq $((j+1)) $((${#group_list[@]}-1))); do
-                result=$(check_combination ${group_list[$i]} ${group_list[$j]} ${group_list[$k]}) && echo "$result" && return 0
-            done
-        done
-    done
-
-    result=$(check_combination "${group_list[@]}") && echo "$result" && return 0
-    return 1
-}
-
 while [ $submit_count -lt $max_submissions ]; do
-    queue=$(squeue -u "$USER" --Format="Name:100" --noheader | grep -w "train_ACE_${case}")
-
-    if [ -z "$queue" ]; then
-        echo "[$(date)] Job train_ACE_${case} is not in queue. Submitting job #$((submit_count + 1))..."
-
-        NODELIST=$(find_nodelist)
-        if [ -n "$NODELIST" ]; then
-            echo "[$(date)] Found preferred nodes: $NODELIST"
-            sbatch --nodelist=$(echo "$NODELIST" | tr ' ' ',') "train_scripts/run_${case}.sh"
-        else
-            echo "[$(date)] No preferred nodelist found. Letting Slurm scheduler decide (but excluding explicitly specified nodes)."
-            sbatch --exclude=$EXCLUDE_NODES "train_scripts/run_${case}.sh"
-        fi
-
+    # Is a job with this exact name already in the queue (any state)?
+    if ! squeue -u "$USER" -h -o "%j" | grep -qx "train_ACE_${nlon}_${nlat}_${case}"; then
+        echo "[$(date)] Job train_ACE_${nlon}_${nlat}_${case} is not in queue. Submitting job #$((submit_count + 1))..."
+        sbatch "train_scripts/run_${case}.sh"   # <-- no nodelist / no exclude
         ((submit_count++))
     else
-        echo "[$(date)] Job train_ACE_${case} is still in the queue. Waiting..."
+        echo "[$(date)] Job train_ACE_${nlon}_${nlat}_${case} is still in the queue. Waiting..."
     fi
-
     sleep 600
 done
 

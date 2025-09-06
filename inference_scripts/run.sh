@@ -34,8 +34,7 @@ fi
 output_directory="/scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/output_directory/${case}_${data}_${ckpt}_${date}"
 mkdir -p "${output_directory}"
 
-sed -e "s|XXXXXX|${nlon}|g" \
-    -e "s|YYYYYY|${nlat}|g" \
+sed -e "s|XXxYY|${nlon}x${nlat}|g" \
     -e "s|FFFFFF|${ckpt_file}|g" \
     -e "s|OOOOOO|${output_directory}|g" \
     -e "s|ZZZZ|${yyyy}|g" \

@@ -8,15 +8,15 @@ logging:
   log_to_file: true
   project: ace
 initial_condition:
-  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/ufs_replay/ic_ZZZZ.XXXXXXxYYYYYY.nc
-  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/ic_ZZZZ.XXXXXXxYYYYYY.nc
+  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/ufs_replay/XXxYY/ic_ZZZZ.XXxYY.nc
+  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/XXxYY/ic_ZZZZ.XXxYY.nc
   start_indices:
     times:
       - "ZZZZ-MM-DDTHH:00:00"
 forcing_loader:
   dataset:
-    data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/ufs_replay/
-    #data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/era5_reanalysis
+    data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/ufs_replay/XXxYY/
+    #data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/era5_reanalysis/XXxYY
   num_data_workers: 4
 data_writer:
   save_prediction_files: true

@@ -8,26 +8,26 @@ ema:
 max_epochs: 120
 n_forward_steps: 2
 train_loader:
-  batch_size: 16
-  num_data_workers: 16
+  batch_size: 8
+  num_data_workers: 8
   dataset:
-    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
         start_time: '1994-01-01'
         stop_time: '2018-12-31'
 validation_loader:
-  batch_size: 16
-  num_data_workers: 16
+  batch_size: 8
+  num_data_workers: 8
   dataset:
-    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
         start_time: '2019-01-01'
         stop_time: '2019-12-31'
-    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
         start_time: '2021-01-01'
         stop_time: '2021-12-31'
-    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay
+    - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
         start_time: '2023-01-01'
         stop_time: '2023-12-31'
@@ -182,11 +182,11 @@ inference:
         - '2024-12-15T00:00:00'
         - '2024-12-21T00:00:00'
     dataset:
-      data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay
-    num_data_workers: 16
+      data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
+    num_data_workers: 8
   aggregator:
     log_histograms: true
-    time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/time_means_all.XXXXXXxYYYYYY.nc
+    time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/XXxYY/time_means_all.XXxYY.nc
 logging:
   log_to_screen: true
   log_to_wandb: true
@@ -238,11 +238,11 @@ stepper:
       USWRFtoa: 2
       tendency_of_total_water_path_due_to_advection: 0.5
   normalization:
-    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.XXXXXXxYYYYYY.nc
-    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_full_field_all.XXXXXXxYYYYYY.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/XXxYY/centering_all.XXxYY.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/XXxYY/scaling_full_field_all.XXxYY.nc
   residual_normalization:
-    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/centering_all.XXXXXXxYYYYYY.nc
-    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/scaling_residual_all.XXXXXXxYYYYYY.nc
+    global_means_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/XXxYY/centering_all.XXxYY.nc
+    global_stds_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/ufs_replay/XXxYY/scaling_residual_all.XXxYY.nc
   ocean:
     surface_temperature_name: surface_temperature
     ocean_fraction_name: ocean_fraction

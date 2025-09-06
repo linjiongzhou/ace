@@ -3,12 +3,10 @@
 #SBATCH --partition=u1-h100
 #SBATCH --qos=gpuwf
 #SBATCH -A gfdlhires
-####SBATCH --nodes=4
-#SBATCH --nodes=8
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:h100:2
-####SBATCH --time=4:22:00
-#SBATCH --time=2:11:00
+#SBATCH --time=24:00:00
 #SBATCH --output=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/STDO/%x.o%j
 
 set -e
@@ -25,9 +23,7 @@ output_directory="/scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/output_directory
 mkdir -p "${output_directory}"
 
 if [ ! -f "train_config/train_config_${case}.yaml" ]; then
-    # Create config
-    sed -e "s|XXXXXX|${nlon}|g" \
-        -e "s|YYYYYY|${nlat}|g" \
+    sed -e "s|XXxYY|${nlon}x${nlat}|g" \
         -e "s|OOOOOO|${output_directory}|g" \
         train_config/train_config_${data}.yaml > train_config/train_config_${case}.yaml
 fi
