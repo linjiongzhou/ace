@@ -200,12 +200,13 @@ optimization:
   kwargs:
     weight_decay: 0.01
 stepper:
-  parameter_init:
-    weights_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/ace2_era5_ckpt.tar
+  #parameter_init:
+  #  weights_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/ace2_era5_ckpt.tar
   builder:
     type: SphericalFourierNeuralOperatorNet
     config:
-      embed_dim: 384
+      embed_dim: 256
+      #embed_dim: 384
       filter_type: linear
       hard_thresholding_fraction: 1.0
       use_mlp: true
