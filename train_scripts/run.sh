@@ -42,14 +42,6 @@ conda activate fme
 # ---- NCCL hints (IB) ----
 export NCCL_DEBUG=WARN
 export NCCL_ASYNC_ERROR_HANDLING=1
-# If IB gives trouble, uncomment:
-# export NCCL_IB_DISABLE=1
-
-# ---- When training on high-resolution data ----
-export OMP_NUM_THREADS=4
-export MKL_NUM_THREADS=4
-export PYTORCH_CUDA_ALLOC_CONF="backend:cudaMallocAsync,max_split_size_mb:256,garbage_collection_threshold:0.8"
-export HDF5_USE_FILE_LOCKING=FALSE
 
 # ---- Launch: 1 task per node; torchrun spawns 2 procs (one per GPU) ----
 srun \
@@ -78,6 +70,12 @@ PY
   MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
   MASTER_IP=$(getent ahostsv4 $MASTER_ADDR | awk "{ print \$1; exit }")
   MASTER_PORT=29500
+
+  # start per-node memory logger (CPU + GPU)
+  export MEM_LOG_DIR=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/mem_logs
+  export LOG_INTERVAL=60    # or whatever interval you want, in seconds
+  source /scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/start_mem_logger.sh
+  start_mem_logger
 
   PYTHONPATH=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/fme:$PYTHONPATH \
   torchrun \

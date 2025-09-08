@@ -147,3 +147,6 @@ train_scripts/run_r*.sh
 # sample configuration files
 inference_config/inference_config_r*.yaml
 train_config/train_config_r*.yaml
+
+# memory logs
+start_mem_logger.sh

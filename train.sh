@@ -49,7 +49,10 @@
 #case="r0046" # same as r0043, but moisture_budget_correction off
 #case="r0047" # same as r0044, but moisture_budget_correction off
 #case="r0048" # same as r0047, but use new file naming
-case="r0049" # same as r0048, but not transfer learning or fine tuning
+#case="r0049" # same as r0048, but not transfer learning or fine tuning
+#case="r0050" # same as r0049, but 25-km training data
+case="r0051" # same as r0050, optimize memory usage
+#case="r0052" # same as r0050, optimize memory usage
 
 #data="gfs"
 data="ufs"
