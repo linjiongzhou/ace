@@ -148,5 +148,5 @@ train_scripts/run_r*.sh
 inference_config/inference_config_r*.yaml
 train_config/train_config_r*.yaml
 
-# memory logs
-start_mem_logger.sh
+# memory usage folder
+mem_logs
