@@ -8,14 +8,16 @@ logging:
   log_to_file: true
   project: ace
 initial_condition:
-  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/gfs_analysis/part3/XXxYY/ic_ZZZZ.XXxYY.nc
-  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/XXxYY/ic_ZZZZ.XXxYY.nc
+  path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/gfs_analysis/part3/XXxYY/ic_TTTSSS.XXxYY.nc
+  #path: /scratch4/BIL-P3/bil-coastal-gfdl/Linjiong.Zhou/datasets/initial_conditions/gfs_analysis/part3/XXxYY/ic_TTTSSS.XXxYY.nc
+  #path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/initial_conditions/era5_reanalysis/XXxYY/ic_TTTSSS.XXxYY.nc
   start_indices:
     times:
-      - "ZZZZ-MM-DDTHH:00:00"
+      - "YYYY-MM-DDTHH:00:00"
 forcing_loader:
   dataset:
     data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/gfs_analysis/part3/XXxYY/
+    #data_path: /scratch4/BIL-P3/bil-coastal-gfdl/Linjiong.Zhou/datasets/forcing_data/gfs_analysis/part3/XXxYY/
     #data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/forcing_data/era5_reanalysis/XXxYY
   num_data_workers: 4
 data_writer:

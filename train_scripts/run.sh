@@ -7,8 +7,7 @@
 #SBATCH --ntasks-per-node=1          # one Slurm task per node
 #SBATCH --gres=gpu:h100:2            # both GPUs to that task
 #SBATCH --time=24:00:00
-#SBATCH --exclude=u22g08
-#SBATCH --output=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/STDO/%x.o%j
+#SBATCH --output=/scratch4/GFDL/gfdlhires/Linjiong.Zhou/STDO/%x.o%j
 
 set -euo pipefail
 set -x
@@ -21,7 +20,7 @@ data="DDDDDD"
 
 export WANDB_MODE=offline
 
-output_directory="/scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/output_directory/${case}"
+output_directory="/scratch4/BIL-P3/bil-coastal-gfdl/Linjiong.Zhou/datasets/output_directory/${case}"
 mkdir -p "${output_directory}"
 
 if [ ! -f "train_config/train_config_${case}.yaml" ]; then
@@ -35,9 +34,11 @@ module purge
 module load cuda/12.9.1
 
 # ---- Repo / env ----
-cd /scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace
+cd /scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace
 source /scratch4/GFDL/gfdlscr/Linjiong.Zhou/miniconda3/etc/profile.d/conda.sh
+set +u
 conda activate fme
+set -u
 
 # ---- NCCL hints (IB) ----
 export NCCL_DEBUG=WARN
@@ -72,12 +73,12 @@ PY
   MASTER_PORT=29500
 
   # start per-node memory logger (CPU + GPU)
-  export MEM_LOG_DIR=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/mem_logs
+  export MEM_LOG_DIR=/scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/mem_logs
   export LOG_INTERVAL=60    # or whatever interval you want, in seconds
-  source /scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/start_mem_logger.sh
+  source /scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/start_mem_logger.sh
   start_mem_logger
 
-  PYTHONPATH=/scratch4/GFDL/gfdlscr/Linjiong.Zhou/ace/fme:$PYTHONPATH \
+  PYTHONPATH=/scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/fme:$PYTHONPATH \
   torchrun \
     --nnodes=${SLURM_NNODES} \
     --nproc_per_node=2 \

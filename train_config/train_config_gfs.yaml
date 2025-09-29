@@ -8,8 +8,8 @@ ema:
 max_epochs: 120
 n_forward_steps: 2
 train_loader:
-  batch_size: 16
-  num_data_workers: 16
+  batch_size: 8
+  num_data_workers: 8
   dataset:
     - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/gfs_analysis/part1/XXxYY
       subset:
@@ -24,8 +24,8 @@ train_loader:
         start_time: '2022-06-25'
         stop_time: '2022-12-31'
 validation_loader:
-  batch_size: 16
-  num_data_workers: 16
+  batch_size: 8
+  num_data_workers: 8
   dataset:
     - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/gfs_analysis/part3/XXxYY
       subset:
@@ -63,7 +63,7 @@ inference:
         - '2024-12-15T00:00:00'
     dataset:
       data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/gfs_analysis/part3/XXxYY
-    num_data_workers: 16
+    num_data_workers: 8
   aggregator:
     log_histograms: true
     time_mean_reference_data: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/statsdata/gfs_analysis/XXxYY/time_means_all.XXxYY.nc
