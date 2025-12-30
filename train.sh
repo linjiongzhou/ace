@@ -95,14 +95,57 @@
 #case="r0092" # same as r0089, n_forward_steps: 12, fine-tune from r0089
 #case="r0093" # same as r0076, lr: 0.00001, use_gradient_accumulation: true
 #case="r0094" # same as r0076, lr: 0.000001, use_gradient_accumulation: true
-case="r0095" # same as r0077, n_forward_steps: 8, fine-tune from r0077
-
-#case="r0095" # same as r0070, use_gradient_accumulation: true
-#case="r0096" # same as r0072, use_gradient_accumulation: true
-#case="r0097" # same as r0073, use_gradient_accumulation: true
-#case="r0098" # same as r0070
-#case="r0099" # same as r0072
-#case="r0100" # same as r0073
+#case="r0095" # same as r0077, n_forward_steps: 8, fine-tune from r0077
+#case="r0096" # same as r0095, n_forward_steps: 12, fine-tune from r0095
+#case="r0097" # same as r0054, for 25-km, 16-layer training, use_gradient_accumulation: true, scale_factor: 3
+#case="r0098" # same as r0097, n_forward_steps: 4
+#case="r0099" # same as r0097, embed_dim: 384, scale_factor: 4
+#case="r0100" # same as r0097, n_forward_steps: 8
+#case="r0101" # same as r0098, lr: 0.00001
+#case="r0102" # same as r0098, lr: 0.000001
+#case="r0103" # same as r0100, lr: 0.00001
+#case="r0104" # same as r0100, lr: 0.000001
+#case="r0105" # same as r0097, fine-tune from r0097, n_forward_steps: 4, lr: 0.00001
+#case="r0106" # same as r0097, fine-tune from r0097, n_forward_steps: 4, lr: 0.000001
+#case="r0107" # same as r0105, fine-tune from r0105, n_forward_steps: 8, lr: 0.00001
+#case="r0108" # same as r0106, fine-tune from r0106, n_forward_steps: 8, lr: 0.000001
+#case="r0109" # same as r0107, fine-tune from r0107, n_forward_steps: 12, lr: 0.00001
+#case="r0110" # same as r0108, fine-tune from r0108, n_forward_steps: 12, lr: 0.000001
+#case="r0111" # same as r0109, run for 1 epoch, only
+#case="r0112" # same as r0110, run for 1 epoch, only
+#case="r0113" # same as r0097, scale_factor: 4
+#case="r0114" # same as r0097, scale_factor: 4, lr: 0.00001
+#case="r0115" # same as r0097, scale_factor: 4, lr: 0.000001
+#case="r0116" # same as r0097, fine-tune from r0097, n_forward_steps: 4
+#case="r0117" # same as r0116, fine-tune from r0116, n_forward_steps: 8
+#case="r0118" # same as r0117, fine-tune from r0117, n_forward_steps: 12
+#case="r0119" # same as r0097, fine-tune from r0097, n_forward_steps: 4, lr: 0.0001
+#case="r0120" # same as r0097, fine-tune from r0097, n_forward_steps: 4, lr: 0.00001
+#case="r0121" # same as r0097, fine-tune from r0097, n_forward_steps: 4, lr: 0.000001
+#case="r0122" # same as r0113, fine-tune from r0113, n_forward_steps: 4, lr: 0.0001
+#case="r0123" # same as r0113, fine-tune from r0113, n_forward_steps: 4, lr: 0.00001
+#case="r0124" # same as r0113, fine-tune from r0113, n_forward_steps: 4, lr: 0.000001
+#case="r0125" # same as r0119, fine-tune from r0119, n_forward_steps: 8, lr: 0.0001
+#case="r0126" # same as r0120, fine-tune from r0120, n_forward_steps: 8, lr: 0.00001
+#case="r0127" # same as r0121, fine-tune from r0121, n_forward_steps: 8, lr: 0.000001
+#case="r0128" # same as r0122, fine-tune from r0122, n_forward_steps: 8, lr: 0.0001
+#case="r0129" # same as r0123, fine-tune from r0123, n_forward_steps: 8, lr: 0.00001
+#case="r0130" # same as r0124, fine-tune from r0124, n_forward_steps: 8, lr: 0.000001
+#case="r0131" # same as r0125, fine-tune from r0125, n_forward_steps: 12, lr: 0.0001
+#case="r0132" # same as r0126, fine-tune from r0126, n_forward_steps: 12, lr: 0.00001
+#case="r0133" # same as r0127, fine-tune from r0127, n_forward_steps: 12, lr: 0.000001
+#case="r0134" # same as r0128, fine-tune from r0128, n_forward_steps: 12, lr: 0.0001
+#case="r0135" # same as r0129, fine-tune from r0129, n_forward_steps: 12, lr: 0.00001
+#case="r0136" # same as r0130, fine-tune from r0130, n_forward_steps: 12, lr: 0.000001
+#case="r0137" # same as r0061, fine-tune from r0061, n_forward_steps: 4, lr: 0.0001
+#case="r0138" # same as r0061, fine-tune from r0061, n_forward_steps: 4, lr: 0.00001
+#case="r0139" # same as r0061, fine-tune from r0061, n_forward_steps: 4, lr: 0.000001
+#case="r0140" # same as r0137, fine-tune from r0137, n_forward_steps: 8, lr: 0.0001
+#case="r0141" # same as r0138, fine-tune from r0138, n_forward_steps: 8, lr: 0.00001
+#case="r0142" # same as r0139, fine-tune from r0139, n_forward_steps: 8, lr: 0.000001
+#case="r0143" # same as r0140, fine-tune from r0140, n_forward_steps: 12, lr: 0.0001
+#case="r0144" # same as r0141, fine-tune from r0141, n_forward_steps: 12, lr: 0.00001
+case="r0145" # same as r0142, fine-tune from r0142, n_forward_steps: 12, lr: 0.000001
 
 #data="gfs"
 data="ufs"
@@ -131,7 +174,7 @@ fi
 max_submissions=50
 submit_count=0
 
-EXCLUDE_NODES="u21g06"
+EXCLUDE_NODES="u22g08"
 
 while [ $submit_count -lt $max_submissions ]; do
     # Is a job with this exact name already in the queue (any state)?

@@ -76,6 +76,12 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # Ensure project is importable even if PYTHONPATH was empty
 export PYTHONPATH="/scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/fme${PYTHONPATH:+:$PYTHONPATH}"
 
+# start per-node memory logger (CPU + GPU)
+export MEM_LOG_DIR=/scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/mem_logs
+export LOG_INTERVAL=1    # or whatever interval you want, in seconds
+source /scratch4/GFDL/gfdlhires/Linjiong.Zhou/ace/start_mem_logger.sh
+start_mem_logger
+
 # ---- Run inference (single process) ----
 python -m fme.ace.inference inference_config/inference_config_${case}_${data}_${ckpt}_${date}.yaml
 

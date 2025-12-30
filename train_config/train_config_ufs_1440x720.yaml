@@ -5,10 +5,12 @@ checkpoint_save_epochs:
 validate_using_ema: true
 ema:
   decay: 0.999
+#max_epochs: 1
 max_epochs: 120
-#n_forward_steps: 2
+#max_epochs: 240
+n_forward_steps: 2
 #n_forward_steps: 4
-n_forward_steps: 8
+#n_forward_steps: 8
 #n_forward_steps: 12
 train_loader:
   batch_size: 8
@@ -28,11 +30,13 @@ train_loader:
         stop_time: '2023-12-31'
 validation_loader:
   batch_size: 8
+  #num_data_workers: 1
   num_data_workers: 8
   dataset:
     - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
         start_time: '2020-01-01'
+        #stop_time: '2020-01-01'
         stop_time: '2020-12-31'
     - data_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/training/ufs_replay/XXxYY
       subset:
@@ -206,32 +210,34 @@ logging:
   entity: linjiong-princeton-university
 optimization:
   enable_automatic_mixed_precision: false
-  #lr: 0.0001
+  lr: 0.0001
   #lr: 0.00001
-  lr: 0.000001
-  #use_gradient_accumulation: true
+  #lr: 0.000001
+  use_gradient_accumulation: true
   optimizer_type: FusedAdam
   kwargs:
     weight_decay: 0.01
 stepper:
   #residual_prediction: true
-  parameter_init:
+  #parameter_init:
     #weights_path: /scratch4/GFDL/gfdlscr/Linjiong.Zhou/datasets/ace2_era5_ckpt.tar
-    weights_path: /scratch4/BIL-P3/bil-coastal-gfdl/Linjiong.Zhou/datasets/output_directory/r0077/training_checkpoints/best_ckpt.tar
+    #weights_path: /scratch4/BIL-P3/bil-coastal-gfdl/Linjiong.Zhou/datasets/output_directory/r0139/training_checkpoints/best_ckpt.tar
   builder:
     type: SphericalFourierNeuralOperatorNet
     config:
       #embed_dim: 128
       #embed_dim: 192
-      #embed_dim: 256
-      embed_dim: 384
+      embed_dim: 256
+      #embed_dim: 384
       filter_type: linear
       hard_thresholding_fraction: 1.0
       use_mlp: true
       normalization_layer: instance_norm
-      num_layers: 8
+      num_layers: 16
       operator_type: dhconv
-      scale_factor: 1
+      #scale_factor: 1
+      scale_factor: 3
+      #scale_factor: 4
       separable: false
       spectral_layers: 3
       spectral_transform: sht
@@ -241,11 +247,18 @@ stepper:
     weights:
       air_temperature_0: 0.5
       air_temperature_1: 0.5
+      air_temperature_2: 0.5
+      air_temperature_3: 0.5
       eastward_wind_0: 0.5
+      eastward_wind_1: 0.5
       northward_wind_0: 0.5
+      northward_wind_1: 0.5
       specific_total_water_0: 0.5
-      specific_total_water_1: 0.25
-      specific_total_water_2: 0.5
+      specific_total_water_1: 0.5
+      specific_total_water_2: 0.25
+      specific_total_water_3: 0.25
+      specific_total_water_4: 0.5
+      specific_total_water_5: 0.5
       PRATEsfc: 0.5
       h500: 10
       TMP850: 5
@@ -277,6 +290,14 @@ stepper:
     - specific_total_water_5
     - specific_total_water_6
     - specific_total_water_7
+    - specific_total_water_8
+    - specific_total_water_9
+    - specific_total_water_10
+    - specific_total_water_11
+    - specific_total_water_12
+    - specific_total_water_13
+    - specific_total_water_14
+    - specific_total_water_15
     - Q2m
     - PRATEsfc
     - ULWRFsfc
@@ -308,6 +329,14 @@ stepper:
   - air_temperature_5
   - air_temperature_6
   - air_temperature_7
+  - air_temperature_8
+  - air_temperature_9
+  - air_temperature_10
+  - air_temperature_11
+  - air_temperature_12
+  - air_temperature_13
+  - air_temperature_14
+  - air_temperature_15
   - specific_total_water_0
   - specific_total_water_1
   - specific_total_water_2
@@ -316,6 +345,14 @@ stepper:
   - specific_total_water_5
   - specific_total_water_6
   - specific_total_water_7
+  - specific_total_water_8
+  - specific_total_water_9
+  - specific_total_water_10
+  - specific_total_water_11
+  - specific_total_water_12
+  - specific_total_water_13
+  - specific_total_water_14
+  - specific_total_water_15
   - eastward_wind_0
   - eastward_wind_1
   - eastward_wind_2
@@ -324,6 +361,14 @@ stepper:
   - eastward_wind_5
   - eastward_wind_6
   - eastward_wind_7
+  - eastward_wind_8
+  - eastward_wind_9
+  - eastward_wind_10
+  - eastward_wind_11
+  - eastward_wind_12
+  - eastward_wind_13
+  - eastward_wind_14
+  - eastward_wind_15
   - northward_wind_0
   - northward_wind_1
   - northward_wind_2
@@ -332,6 +377,14 @@ stepper:
   - northward_wind_5
   - northward_wind_6
   - northward_wind_7
+  - northward_wind_8
+  - northward_wind_9
+  - northward_wind_10
+  - northward_wind_11
+  - northward_wind_12
+  - northward_wind_13
+  - northward_wind_14
+  - northward_wind_15
   out_names:
   - PRESsfc
   - surface_temperature
@@ -343,6 +396,14 @@ stepper:
   - air_temperature_5
   - air_temperature_6
   - air_temperature_7
+  - air_temperature_8
+  - air_temperature_9
+  - air_temperature_10
+  - air_temperature_11
+  - air_temperature_12
+  - air_temperature_13
+  - air_temperature_14
+  - air_temperature_15
   - specific_total_water_0
   - specific_total_water_1
   - specific_total_water_2
@@ -351,6 +412,14 @@ stepper:
   - specific_total_water_5
   - specific_total_water_6
   - specific_total_water_7
+  - specific_total_water_8
+  - specific_total_water_9
+  - specific_total_water_10
+  - specific_total_water_11
+  - specific_total_water_12
+  - specific_total_water_13
+  - specific_total_water_14
+  - specific_total_water_15
   - eastward_wind_0
   - eastward_wind_1
   - eastward_wind_2
@@ -359,6 +428,14 @@ stepper:
   - eastward_wind_5
   - eastward_wind_6
   - eastward_wind_7
+  - eastward_wind_8
+  - eastward_wind_9
+  - eastward_wind_10
+  - eastward_wind_11
+  - eastward_wind_12
+  - eastward_wind_13
+  - eastward_wind_14
+  - eastward_wind_15
   - northward_wind_0
   - northward_wind_1
   - northward_wind_2
@@ -367,6 +444,14 @@ stepper:
   - northward_wind_5
   - northward_wind_6
   - northward_wind_7
+  - northward_wind_8
+  - northward_wind_9
+  - northward_wind_10
+  - northward_wind_11
+  - northward_wind_12
+  - northward_wind_13
+  - northward_wind_14
+  - northward_wind_15
   - LHTFLsfc
   - SHTFLsfc
   - PRATEsfc

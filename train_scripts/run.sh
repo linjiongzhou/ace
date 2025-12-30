@@ -26,7 +26,7 @@ mkdir -p "${output_directory}"
 if [ ! -f "train_config/train_config_${case}.yaml" ]; then
   sed -e "s|XXxYY|${nlon}x${nlat}|g" \
       -e "s|OOOOOO|${output_directory}|g" \
-      "train_config/train_config_${data}.yaml" > "train_config/train_config_${case}.yaml"
+      "train_config/train_config_${data}_${nlon}x${nlat}.yaml" > "train_config/train_config_${case}.yaml"
 fi
 
 # ---- Ursa modules ----
